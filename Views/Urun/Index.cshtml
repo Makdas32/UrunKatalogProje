@@ -1,0 +1,99 @@
+﻿@model IEnumerable<UrunKatalog.Entity.Urun>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container pb-5">
+    <h2>Ürün Listesi</h2>
+    <hr />
+    <p>
+        @Html.ActionLink("Ürün Ekle", "Ekle", null, new { @class = "btn btn-success" })
+    </p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UrunResim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kategori.KategoriAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrunAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrunFiyat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrunStok)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UrunSatistami)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrunAnasayfa)
+            </th>
+            <th style="width:135px;"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="/Upload/@item.UrunResim" width="70" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kategori.KategoriAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UrunAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UrunFiyat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UrunStok)
+                </td>
+
+                <td>
+                    @if (item.UrunSatistami)
+                    {
+                        <span class="badge badge-success">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                            Evet
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                            Hayır
+                        </span>
+                    }
+                </td>
+                <td>
+                    @if (item.UrunAnasayfa)
+                    {
+                        <span class="badge badge-success">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                            Evet
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                            Hayır
+                        </span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Duzenle", new { id = item.Id }, new { @class = "btn btn-dark btn-sm" })
+                    @Html.ActionLink("Sil", "Sil", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

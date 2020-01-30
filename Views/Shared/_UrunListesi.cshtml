@@ -1,0 +1,32 @@
+﻿@model IEnumerable<UrunKatalog.Models.UrunModel>
+
+
+<div class="row">
+
+    @foreach (var urun in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img class="card-img-top" src="~/Upload//@urun.UrunResim" alt="@urun.UrunAdi">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="/Home/Detay/@urun.Id">@urun.UrunAdi</a>
+                    </h4>
+                    <p class="card-text pt-2 description">@urun.UrunAciklama</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted product-price">
+                        <i class="fa fa-try" aria-hidden="true"></i>
+                        @urun.UrunFiyat
+                    </small>
+                    <a href="/Home/Detay/@urun.Id" class="btn btn-dark btn-sm float-right">
+                        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                        Ürünü İncele
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>

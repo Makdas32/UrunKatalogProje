@@ -1,0 +1,27 @@
+﻿@model UrunKatalog.Entity.Urun
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="container pb-5">
+        <h2>Ürün Sil</h2>
+
+        <hr />
+        <div class="alert alert-warning" role="alert">
+            <h3><strong>@Html.DisplayFor(model => model.UrunAdi)</strong> İsimli Ürünü Silmek İstediğine Eminmisin?</h3>
+        </div>
+        <div>
+ 
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" />
+            @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+            }
+        </div>

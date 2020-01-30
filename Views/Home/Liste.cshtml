@@ -1,0 +1,35 @@
+﻿@model IEnumerable<UrunKatalog.Models.UrunModel>
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    ViewBag.Title = "Liste";
+}
+<div class="container pb-5">
+    <div class="row">
+
+        <div class="col-md-3">
+            @Html.Action("_KategoriListesi","Home")
+        </div>
+
+        <div class="col-md-9">
+
+            @if (Model.Count() == 0)
+            {
+            <div class="alert alert-warning" role="alert">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                Bu Kategoride Ürün Bulunamadı
+            </div>
+            }
+            else
+            {
+        <div class="alert alert-success" role="alert">
+            <strong>@Model.Count() Adet</strong>  Ürün Bulundu!
+        </div>
+            }
+            @Html.Partial("_UrunListesi", Model)
+
+        </div>
+    </div>
+</div>
+

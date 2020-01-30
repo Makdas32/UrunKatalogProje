@@ -1,0 +1,76 @@
+﻿@model UrunKatalog.Models.SiparisDetayModel
+@{
+    ViewBag.Title = "Detay";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Sipariş Bilgileriniz</h2>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">Sipariş Durumu</dt>
+                <dd class="col-sm-9">
+                    @if (Model.SiparisDurumu == UrunKatalog.Entity.EnumSiparisDurum.OnayBekliyor)
+                    {
+                        <span class="badge badge-danger">Onay Bekliyor</span>
+                    }
+                    else if(Model.SiparisDurumu == UrunKatalog.Entity.EnumSiparisDurum.Tamamlandı)
+                    {
+                        <span class="badge badge-success">Onaylanmış</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">Sipariş Numarası</dt>
+                <dd class="col-sm-9">@Model.SiparisNumarasi</dd>
+
+                <dt class="col-sm-3">Ödeme Miktarı</dt>
+                <dd class="col-sm-9">@Model.OdemeMiktari</dd>
+
+                <dt class="col-sm-3">Sipariş Tarihi</dt>
+                <dd class="col-sm-9">@Model.SiparisTarihi</dd>
+
+                <dt class="col-sm-3">Adres</dt>
+                <dd class="col-sm-9">
+                   <strong>Başlık:</strong> @Model.AdresBaslik
+                    <hr />
+                    <strong>Adres:</strong>@Model.Adres
+                    <br />
+                    <strong>Şehir-İlçe-Mahalle:</strong>@Model.Sehir - @Model.İlce - @Model.Mahalle
+                    <br />
+                    <strong>Posta Kodu:</strong>@Model.PostaKodu
+                </dd>
+
+                <dt class="col-sm-3">Ürünler</dt>
+                <dd class="col-sm-9">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ürün Resmi</th>
+                                <th>Ürün Adı</th>
+                                <th>Ürün Adet</th>
+                                <th>Ürün Fiyat</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SiparisDetaylar)
+                            {
+                                <tr>
+                                    <td><img src="~/Upload/@item.UrunResim" width="50" /></td>
+                                    <td>@item.UrunAdi</td>
+                                    <td>@item.SiparisMiktar</td>
+                                    <td>@item.UrunFiyat</td>
+                                    <td><a href="/Home/Detay/@item.UrunId" class="btn btn-primary btn-sm" target="_blank">Ürün Detayları</a></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

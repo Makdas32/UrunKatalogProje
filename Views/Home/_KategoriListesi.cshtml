@@ -1,0 +1,27 @@
+﻿@model IEnumerable<UrunKatalog.Entity.Kategori>
+
+@{
+    var secilikategori = Url.RequestContext.RouteData.Values["id"]; //Seçilen kategorinin idsini alıyoruz
+}
+<ul class="list-group">
+    <a href="/Home/Liste" class="list-group-item"><i class="fa fa-chevron-right" aria-hidden="true"></i>Tüm Kategoriler</a>
+    @foreach (var item in Model)
+    {
+        if (secilikategori != null)
+        {
+            if (item.Id == int.Parse(secilikategori.ToString()))
+            {   
+             <a href="/Home/Liste/@item.Id" class="list-group-item active"><i class="fa fa-chevron-right" aria-hidden="true"></i>@item.KategoriAdi</a>
+            }
+            else
+            {
+            <a href="/Home/Liste/@item.Id" class="list-group-item"><i class="fa fa-chevron-right" aria-hidden="true"></i>@item.KategoriAdi</a>
+            }
+        }
+        else
+        {
+            <a href="/Home/Liste/@item.Id" class="list-group-item"><i class="fa fa-chevron-right" aria-hidden="true"></i>@item.KategoriAdi</a>
+        }
+    }
+</ul>
+

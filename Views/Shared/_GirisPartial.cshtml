@@ -1,0 +1,26 @@
+﻿<ul class="navbar-nav my-2 my-lg-0">
+
+    @if (Request.IsAuthenticated) //Kullanıcı giriş yapmışsa
+    {
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account"> @User.Identity.Name</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Cikis">Çıkış</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Giris">Giriş Yap</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Kayit">Üye Ol</a>
+        </li>
+    }
+
+
+
+
+
+</ul>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<UrunKatalog.Models.KullaniciSiparisModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container">
+   <div class="row">
+       <div class="col-md-12">
+           <h2>Sipariş Bilgileriniz</h2>
+           <hr />
+           <table class="table table-bordered table-striped">
+               <thead>
+                   <tr>
+                       <th>Sipariş Numarası</th>
+                       <th>
+                           <i class="fa fa-calendar" aria-hidden="true"></i>
+                           Sipariş Tarihi
+                       </th>
+                       <th>
+                           <i class="fa fa-money" aria-hidden="true"></i>
+                           Ödeme Miktarı
+                       </th>
+                       <th>
+                           <i class="fa fa-info-circle" aria-hidden="true"></i>
+                           Durum
+                       </th>
+                       <th>
+                           <i class="fa fa-tasks" aria-hidden="true"></i>
+                           İşlemler
+                       </th>
+                   </tr>
+               </thead>
+               <tbody>
+                   @foreach (var item in Model)
+                   {
+                       <tr>
+                           <td>@item.SiparisNumarasi</td>
+                           <td>@item.SiparisTarihi.ToShortDateString()</td>
+                           <td>@item.OdemeMiktari</td>
+                           <td>@item.SiparisDurumu</td>
+                           <td>@Html.ActionLink("Sipariş Detayları","Detay",new { Id = item.Id},new { @class="btn btn-dark"})</td>
+                       </tr>
+                   }
+               </tbody>
+           </table>
+       </div>
+   </div>
+</div>
+

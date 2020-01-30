@@ -1,0 +1,41 @@
+﻿@model IEnumerable<UrunKatalog.Entity.Kategori>
+
+@{
+    ViewBag.Title = "Index";
+     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+    <div class="container pb-5">
+        <h2>Kategori Listesi</h2>
+        <hr />
+        <p>
+            @Html.ActionLink("Kategori Ekle", "Ekle",null,new { @class="btn btn-success"})
+        </p>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KategoriAdi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KategoriAciklama)
+                </th>
+                <th style="width:135px;"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KategoriAdi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KategoriAciklama)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Düzenle", "Duzenle", new { id = item.Id },new { @class="btn btn-dark btn-sm"}) 
+                        @Html.ActionLink("Sil", "Sil", new { id = item.Id },new { @class="btn btn-danger btn-sm"})
+                    </td>
+                </tr>
+            }
+
+        </table>
+</div>

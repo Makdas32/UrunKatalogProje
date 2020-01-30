@@ -1,0 +1,34 @@
+﻿@model UrunKatalog.Entity.Kategori
+
+@{
+    ViewBag.Title = "Detay";
+}
+
+<h2>Detay</h2>
+
+<div>
+    <h4>Kategori</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KategoriAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KategoriAciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KategoriAciklama)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sil", "Sil", new { id = Model.Id }) |
+    @Html.ActionLink("Listeye Dön", "Index")
+</p>

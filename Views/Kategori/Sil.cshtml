@@ -1,0 +1,35 @@
+﻿@model UrunKatalog.Entity.Kategori
+
+@{
+    ViewBag.Title = "Sil";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="container pb-5">
+        <h2>Kategori Sil</h2>
+        <hr />
+        <div class="alert alert-warning" role="alert">
+            <h3><strong>@Html.DisplayFor(model => model.KategoriAdi)</strong> İsimli Kategoriyi Silmek İstediğine Eminmisin?</h3>
+        </div>
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.KategoriAciklama)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.KategoriAciklama)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Sil" class="btn btn-danger" /> 
+                        @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-primary" })
+                    </div>
+                }
+            </div>

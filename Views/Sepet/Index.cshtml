@@ -1,0 +1,78 @@
+﻿@model UrunKatalog.Models.Sepet
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container pb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Alışveriş Sepeti</h2>
+            <hr />
+            @if (Model.SepetAlisverisler.Count > 0)
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Adet</th>
+                            <th>Sipariş Adı</th>
+                            <th>Fiyat</th>
+                            <th>Toplam Fiyat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.SepetAlisverisler)
+                        {
+                            <tr>
+                                <td><img src="~/Upload/@item.Urun.UrunResim" width="50" /></td>
+                                <td>@item.SiparisAdet</td>
+                                <td>@item.Urun.UrunAdi</td>
+                                <td>@item.Urun.UrunFiyat</td>
+                                <td>@((item.Urun.UrunFiyat * item.SiparisAdet).ToString("c"))</td>
+                                <td>
+                                    @using (Html.BeginForm("SepetCikar", "Sepet"))
+                                    {
+                                        @Html.Hidden("Id", item.Urun.Id)
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            Sepetten Çıkar
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5"></td>
+                            <td>@Model.SepetFiyat().ToString("c")</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="text-center">
+                    <a href="/Home/Liste" class="btn btn-dark">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        Alışverişe Devam Et
+                    </a>
+                    <a href="/Sepet/SepetOdeme" class="btn btn-info">
+                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                        Ödemeye Geç
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    <h3>
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        Alışveriş Sepetinizde Ürün Bulunmamaktadır
+                    </h3>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
